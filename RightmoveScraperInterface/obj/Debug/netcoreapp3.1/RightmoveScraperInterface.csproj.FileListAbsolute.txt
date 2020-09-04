@@ -1,0 +1,15 @@
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.exe
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.csprojAssemblyReference.cache
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.AssemblyInfoInputs.cache
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.AssemblyInfo.cs
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.deps.json
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.runtimeconfig.json
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.runtimeconfig.dev.json
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.dll
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\RightmoveScraperInterface.pdb
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.csproj.CoreCompileInputs.cache
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.csproj.CopyComplete
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.dll
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.pdb
+X:\Dev\ProjectPorkSword\RightMoveScraper\RightmoveScraperInterface\obj\Debug\netcoreapp3.1\RightmoveScraperInterface.genruntimeconfig.cache

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mWr4WKB6HP44ZChaI2QyaE8O/7XwglnfUdcHLPsGo0LOOiIql+WQIPc9wzslqisrtPm12DxRZ29Nj+jDlHhJXg==",
+  "success": true,
+  "projectFilePath": "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eddie\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
