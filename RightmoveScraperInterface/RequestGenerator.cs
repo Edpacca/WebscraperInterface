@@ -33,6 +33,7 @@ namespace RightmoveScraperInterface
             SetAdvancedSearchParametersCMD();
             PrintBasicSearchParameters();
             PrintAdvancedSearchParameters();
+            JsonOutput.SerializeJsonRequest(Request);
         }
 
         // Either makes a new entry for a Basic Parameter, or changes the value of the Basic Parameter
@@ -77,28 +78,34 @@ namespace RightmoveScraperInterface
                 if (i > advancedSearchParameterTitles.Count)
                     throw new ArgumentOutOfRangeException("Advanced-Search-Parameter titles not equal to number of parameters");
 
-                SetAdvancedSearchParameterCMD(searchParameter, advancedSearchParameterTitles[i]);
-                Request.RequestAdvancedParameters.Add(searchParameter);
+                Request.CompiledAvancedParameters.Add(advancedSearchParameterTitles[i],
+                    SetAdvancedSearchParameterCMD(searchParameter, advancedSearchParameterTitles[i]));
                 i++;
             }
         }
 
         // Sets Advanced Search Parameter from command line
-        private void SetAdvancedSearchParameterCMD(Dictionary<string, bool> advSearchParameter, string advSearchParameterTitle)
+        private List<string> SetAdvancedSearchParameterCMD(Dictionary<string, bool> advSearchParameter, string advSearchParameterTitle)
         {
             List<string> keys = new List<string>(advSearchParameter.Keys);
+            List<string> compiledParameters = new List<string>();
             Console.WriteLine("'Y' or '1' == YES. 'N' or '0' == NO.\n");
             Console.WriteLine("Refine search options for: {0}?", advSearchParameterTitle);
             if (!Utilities.CmdBoolResponse(""))
-                return;
+                return compiledParameters;
 
             foreach (var parameter in keys)
             {
                 Console.WriteLine("Search for: {0}?", parameter);
 
                 if (Utilities.CmdBoolResponse(""))
+                {
                     SetAdvancedSearchParameter(advSearchParameter, parameter, true);
+                    compiledParameters.Add(parameter);
+                }
             }
+
+            return compiledParameters;
         }
 
         // Validates "min" and "max" values entered for basic search parameters
@@ -152,37 +159,20 @@ namespace RightmoveScraperInterface
         {
             Console.WriteLine("---------------------------------\nAdvanced search parameters\n---------------------------------");
 
-            if (Request.RequestAdvancedParameters == null || Request.RequestAdvancedParameters.Count == 0)
+            if (Request.CompiledAvancedParameters == null || Request.CompiledAvancedParameters.Count == 0)
             {
                 Console.WriteLine("No advanced search parameters found");
                 return;
             }
 
-            var i = 0;
-            foreach (var set in Request.RequestAdvancedParameters)
+            foreach (var set in Request.CompiledAvancedParameters)
             {
-                if (i > advancedSearchParameterTitles.Count)
-                    throw new ArgumentOutOfRangeException("Advanced-Search-Parameter titles not equal to number of parameters");
+                Console.Write("{0} includes: ", set.Key);
 
-                Console.Write("{0} includes: ", advancedSearchParameterTitles[i]);
-
-                foreach (var parameter in set)
-                    if (parameter.Value == true)
-                        Console.Write(parameter.Key + ", ");
+                foreach (var parameter in set.Value)
+                    Console.Write(parameter + ", ");
                 Console.WriteLine();
-                i++;
             }
         }
-
-        // Checks if any advanced search parameters are true
-        public bool ContainsAdvancedSearchParameters(Dictionary<string, bool> advSearchParameter)
-        {
-            foreach (var parameter in advSearchParameter)
-                if (parameter.Value == true)
-                    return true;
-
-            return false;
-        }
-
     }
 }

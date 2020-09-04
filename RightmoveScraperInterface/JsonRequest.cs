@@ -6,14 +6,14 @@ namespace RightmoveScraperInterface
 {
     public class JsonRequest
     {
-        public string SearchArea { get; set; }
+        public string search_area { get; set; }
 
         public Dictionary<string, int> RequestBasicParameters = new Dictionary<string, int>();
-        public List<Dictionary<string, bool>> RequestAdvancedParameters = new List<Dictionary<string, bool>>();
+        public Dictionary<string, List<string>> CompiledAvancedParameters = new Dictionary<string, List<string>>();
 
         public JsonRequest(string searchArea)
         {
-            SearchArea = searchArea;
+            search_area = searchArea;
         }
     }
 }

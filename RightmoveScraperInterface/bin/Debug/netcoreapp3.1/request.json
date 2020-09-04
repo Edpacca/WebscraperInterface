@@ -1,0 +1,12 @@
+{
+  "search_area": "REGION%5E475",
+  "max_bedrooms": 5,
+  "min_bedrooms": 2,
+  "max_price": 100000,
+  "min_price": 50000,
+  "show_house_type": [
+    "flat"
+  ],
+  "must_have": [],
+  "dont_show": []
+}
