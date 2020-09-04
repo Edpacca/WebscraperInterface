@@ -8,183 +8,181 @@ namespace RightmoveScraperInterface
 {
     class RequestGenerator
     {
-        JsonRequest newRequest;
-        SearchOptions searchOptions;
+        public JsonRequest Request { get; set; }
+        public PropertySearchOptions SearchOptions { get; set; }
 
         public readonly List<string> basicSearchParameters = new List<string>();
         public readonly List<Dictionary<string, bool>> advancedSearchParameters = new List<Dictionary<string, bool>>();
+        public readonly List<string> advancedSearchParameterTitles = new List<string>();
 
-        public RequestGenerator(string searchArea)
+        // Makes a new JsonRequest and declares the search options
+        public RequestGenerator(string searchArea, PropertySearchOptions searchOptions)
         {
-            newRequest = new JsonRequest(searchArea);
-            searchOptions = new SearchOptions();
+            Request = new JsonRequest(searchArea);
+            SearchOptions = searchOptions;
 
-            basicSearchParameters = searchOptions.basicSearchParameters;
-            advancedSearchParameters = searchOptions.advancedSearchParameters;
+            basicSearchParameters = SearchOptions.basicSearchParameters;
+            advancedSearchParameters = SearchOptions.advancedSearchParameters;
+            advancedSearchParameterTitles = SearchOptions.advancedSearchParameterTitles;
         }
 
-
-
-        public void SetBasicSearchParameter(string searchParameter, int parameterValue, JsonRequest request)
+        public void GenerateJSONRequestCMD()
         {
-            if (request.JsonBasicSearchParameters.ContainsKey(searchParameter))
-                request.JsonBasicSearchParameters[searchParameter] = parameterValue;
+            SetBasicSearchParametersCMD();
+            ValidateBasicParameters("min", "max", Request.RequestBasicParameters);
+            SetAdvancedSearchParametersCMD();
+            PrintBasicSearchParameters();
+            PrintAdvancedSearchParameters();
+        }
+
+        // Either makes a new entry for a Basic Parameter, or changes the value of the Basic Parameter
+        public void SetBasicSearchParameter(string searchParameter, int parameterValue)
+        {
+            if (Request.RequestBasicParameters.ContainsKey(searchParameter))
+                Request.RequestBasicParameters[searchParameter] = parameterValue;
             else
-                request.JsonBasicSearchParameters.Add(searchParameter, parameterValue);
+                Request.RequestBasicParameters.Add(searchParameter, parameterValue);
         }
 
-        public void PrintAdvancedSearchParameters()
+        // Sets an advanced search parameter to boolean value
+        public void SetAdvancedSearchParameter(Dictionary<string, bool> advSearchParameter, string parameter, bool setting)
         {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("Advanced search parameters");
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine();
-            foreach (var set in advancedSearchParameters)
-            {
-                Console.WriteLine("{0}", set.ToString());
-
-                foreach (var parameter in set)
-                {
-                    if (parameter.Value == true)
-                        Console.WriteLine("searching for {0}", parameter.Key);
-                }
-                Console.WriteLine("-----------");
-            }
+            advSearchParameter[parameter] = setting;
         }
 
-        public void SetAdvancedSearchParameters()
+        // Sets Basic Search Parameters from the command line
+        public void SetBasicSearchParametersCMD()
         {
-            foreach (var searchParameter in advancedSearchParameters)
-            {
-                SetAdvancedSearchParameter(searchParameter);
-                newRequest.JsonAdvancedSearchParameters.Add(searchParameter);
-            }
-        }
-
-        private void SetAdvancedSearchParameter(Dictionary<string, bool> AdvSearchParameter)
-        {
-            string input;
-
-            Console.WriteLine("Refining search options:");
-            Console.WriteLine();
-            foreach (var parameter in AdvSearchParameter)
-            {
-                Console.WriteLine("refine search to include {0}?", parameter.Key);
-                Console.Write("'y' for yes, 'n' for no: ");
-
-                while (true)
-                {
-                    input = Console.ReadLine();
-
-                    if (string.Compare(input.ToLower(),"y") == 0)
-                    {
-                        AdvSearchParameter[parameter.Key] = true;
-                        Console.WriteLine("search refined: {0}", parameter.Key);
-                        break;
-                    }
-                    else if (string.Compare(input.ToLower(), "n") == 0)
-                        break;
-                    else
-                        Console.WriteLine("Enter valid input: press 'y' for yes, 'n' for no");
-
-                }
-            }
-        }
-
-        public void GetBasicSearchParameters()
-        {
+            Console.WriteLine("--- Basic Search Parameters ---\n submit integer number, or press enter to leave blank. \n");
             foreach (var searchProperty in basicSearchParameters)
             {
+                Console.Write("Set value for {0}: ", searchProperty);
+                var input = Utilities.CmdIntegerInput("");
+
+                if (input != 0)
+                    SetBasicSearchParameter(searchProperty, input);
+
                 Console.WriteLine();
-                Console.WriteLine("set search property: {0}", searchProperty);
-                Console.Write("Enter an integer number to set, or press enter to leave blank: ");
-
-                EnterIntSearchProperty(searchProperty);
             }
         }
 
-        public void PrintBasicSearchParameters()
+        // Sets all Advanced Search Parameters
+        public void SetAdvancedSearchParametersCMD()
         {
-            if (newRequest == null)
-                throw new ArgumentNullException("Search parameters not yet entered into JSON request.");
-            
-            while ((CheckMinMaxParameters(newRequest)) == false)
+            Console.WriteLine("--- Advanced Search Parameters --- \n");
+
+            var i = 0;
+            foreach (var searchParameter in advancedSearchParameters)
             {
-                Console.WriteLine("---------------------------------");
-                Console.WriteLine("Basic search parameters");
-                Console.WriteLine("---------------------------------");
+                if (i > advancedSearchParameterTitles.Count)
+                    throw new ArgumentOutOfRangeException("Advanced-Search-Parameter titles not equal to number of parameters");
+
+                SetAdvancedSearchParameterCMD(searchParameter, advancedSearchParameterTitles[i]);
+                Request.RequestAdvancedParameters.Add(searchParameter);
+                i++;
             }
-            
-            foreach (var kvp in newRequest.JsonBasicSearchParameters)
-                Console.WriteLine(kvp.Key + ": " + kvp.Value);
         }
 
-        private void EnterIntSearchProperty(string searchParameter)
+        // Sets Advanced Search Parameter from command line
+        private void SetAdvancedSearchParameterCMD(Dictionary<string, bool> advSearchParameter, string advSearchParameterTitle)
         {
-            string input;
+            List<string> keys = new List<string>(advSearchParameter.Keys);
+            Console.WriteLine("'Y' or '1' == YES. 'N' or '0' == NO.\n");
+            Console.WriteLine("Refine search options for: {0}?", advSearchParameterTitle);
+            if (!Utilities.CmdBoolResponse(""))
+                return;
 
-            while (true)
+            foreach (var parameter in keys)
             {
-                input = Console.ReadLine();
+                Console.WriteLine("Search for: {0}?", parameter);
 
-                if (string.IsNullOrEmpty(input))
-                {
-                    Console.WriteLine("{0} not set", searchParameter);
-                    break;
-                }
-                else if (input.All(Char.IsDigit))
-                {
-                    SetBasicSearchParameter(searchParameter, Int32.Parse(input), newRequest);
-                    Console.WriteLine("{0} set to {1}", searchParameter, input);
-                    Console.WriteLine();
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Enter a valid integer, or press Enter to leave blank");
-                }
+                if (Utilities.CmdBoolResponse(""))
+                    SetAdvancedSearchParameter(advSearchParameter, parameter, true);
             }
         }
 
-        private bool CheckMinMaxParameters(JsonRequest searchRequest)
+        // Validates "min" and "max" values entered for basic search parameters
+        // Prompts user to re-enter values if an invalid pair is found
+        public void ValidateBasicParameters(string min, string max, Dictionary<string, int> basicParameters)
         {
+            var keys = new List<string>(basicParameters.Keys);
+            string testedStr, minStr, maxStr;
             int minValue, maxValue;
-            string testedSearchProperty, minSearchProperty, maxSearchProperty;
 
-            foreach (var kvp in searchRequest.JsonBasicSearchParameters)
+            foreach (var key in keys)
             {
-                if (kvp.Key.StartsWith("min"))
+                if (key.StartsWith(min))
                 {
-                    minSearchProperty = kvp.Key;
-                    minValue = kvp.Value;
-                    testedSearchProperty = kvp.Key.Substring(kvp.Key.IndexOf("_") + 1);
+                    minStr = key;
+                    minValue = basicParameters[key];
+                    testedStr = minStr.TrimStart(min.ToCharArray());
 
-                    if (searchRequest.JsonBasicSearchParameters.TryGetValue("max_" + testedSearchProperty, out maxValue))
+                    if (basicParameters.TryGetValue(max + testedStr, out maxValue))
                     {
-                        if (minValue >= maxValue)
+                        maxStr = max + testedStr;
+
+                        if (!Utilities.ValidateMinMax(minValue, maxValue))
                         {
-                            maxSearchProperty = "max_" + testedSearchProperty;
-                            Console.WriteLine("{0} must be lower than {1}", minSearchProperty, maxSearchProperty);
-
-                            Console.Write("enter new value for {0}: ", minSearchProperty);
-                            EnterIntSearchProperty(minSearchProperty);
-                            
-                            Console.Write("enter new value for {0}: ", maxSearchProperty);
-                            EnterIntSearchProperty(maxSearchProperty);
-
-                            return false;
+                            Console.WriteLine("Error: {0}{2} must be lower than {1}{2}", min, max, testedStr);
+                            SetBasicSearchParameter(minStr, Utilities.CmdIntegerInput("enter new value for " +  minStr));
+                            SetBasicSearchParameter(maxStr, Utilities.CmdIntegerInput("enter new value for " + maxStr));
+                            ValidateBasicParameters(min, max, basicParameters);
                         }
                     }
                     else
-                    {
-                        Console.WriteLine("Error: search parameter min/max pair \"{0}\" not found", testedSearchProperty);
-                    }
+                        Console.WriteLine("Error: {0}/{1} pair for {2} not found. Ammend \"Search Options\"", min, max, testedStr);
                 }
             }
-
-            return true;
         }
 
+        // Prints Basic Search Parameters to command line
+        public void PrintBasicSearchParameters()
+        {
+            if (Request.RequestBasicParameters == null)
+                throw new ArgumentNullException("Search parameters not yet entered into JSON request.");
+
+            Console.WriteLine("---------------------------------\nBasic search parameters\n---------------------------------");
+
+            foreach (var kvp in Request.RequestBasicParameters)
+                Console.WriteLine(kvp.Key + ": " + kvp.Value);
+        }
+
+        // Prints Advanced Search Parameters to command line
+        public void PrintAdvancedSearchParameters()
+        {
+            Console.WriteLine("---------------------------------\nAdvanced search parameters\n---------------------------------");
+
+            if (Request.RequestAdvancedParameters == null || Request.RequestAdvancedParameters.Count == 0)
+            {
+                Console.WriteLine("No advanced search parameters found");
+                return;
+            }
+
+            var i = 0;
+            foreach (var set in Request.RequestAdvancedParameters)
+            {
+                if (i > advancedSearchParameterTitles.Count)
+                    throw new ArgumentOutOfRangeException("Advanced-Search-Parameter titles not equal to number of parameters");
+
+                Console.Write("{0} includes: ", advancedSearchParameterTitles[i]);
+
+                foreach (var parameter in set)
+                    if (parameter.Value == true)
+                        Console.Write(parameter.Key + ", ");
+                Console.WriteLine();
+                i++;
+            }
+        }
+
+        // Checks if any advanced search parameters are true
+        public bool ContainsAdvancedSearchParameters(Dictionary<string, bool> advSearchParameter)
+        {
+            foreach (var parameter in advSearchParameter)
+                if (parameter.Value == true)
+                    return true;
+
+            return false;
+        }
 
     }
 }

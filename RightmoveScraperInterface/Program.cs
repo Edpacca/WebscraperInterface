@@ -12,39 +12,12 @@ namespace RightmoveScraperInterface
     {
         static void Main(string[] args)
         {
-            GenerateRequest();
+            // RequestInterface(true) for manual SearchArea entry
 
-        }
+            var requestInterface = new RequestInterface(false);
+            var searchOptions = new PropertySearchOptions();
 
-        public static void GenerateRequest()
-        {
-            string defaultSearchArea = "REGION%5E475";
-            string input;
-
-            Console.WriteLine("press enter to generate new request.");
-            Console.WriteLine("default search area will be set to: " + defaultSearchArea);
-
-            while (true)
-            {
-                input = Console.ReadLine();
-                if (input == string.Empty)
-                    break;
-                else
-                    Console.WriteLine("press enter to continue");
-            }
-
-            var currentRequest = new RequestGenerator(defaultSearchArea);
-
-            currentRequest.GetBasicSearchParameters();
-            Console.WriteLine();
-            currentRequest.PrintBasicSearchParameters();
-            Console.WriteLine();
-            currentRequest.SetAdvancedSearchParameters();
-            Console.WriteLine();
-            currentRequest.PrintAdvancedSearchParameters();
- 
-
-
+            requestInterface.GenerateRequestCMD(searchOptions);
         }
     }
 }

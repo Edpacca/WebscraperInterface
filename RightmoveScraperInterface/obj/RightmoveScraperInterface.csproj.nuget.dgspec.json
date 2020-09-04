@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {}
+    "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {}
   },
   "projects": {
-    "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {
+    "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+        "projectUniqueName": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
         "projectName": "RightmoveScraperInterface",
-        "projectPath": "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+        "projectPath": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
         "packagesPath": "C:\\Users\\eddie\\.nuget\\packages\\",
-        "outputPath": "X:\\Dev\\ProjectPorkSword\\RightMoveScraper\\RightmoveScraperInterface\\obj\\",
+        "outputPath": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\eddie\\AppData\\Roaming\\NuGet\\NuGet.Config",
