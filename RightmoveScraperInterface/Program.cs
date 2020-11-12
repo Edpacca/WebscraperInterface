@@ -13,7 +13,6 @@ namespace RightmoveScraperInterface
         static void Main(string[] args)
         {
             // RequestInterface(true) for manual SearchArea entry
-
             var requestInterface = new RequestInterface(false);
             var searchOptions = new PropertySearchOptions();
 

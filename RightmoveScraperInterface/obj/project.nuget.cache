@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eKR0VtfjhOnym21TP6wSQ+7W7NMWUPMhRrly268+7rdNB3AoPw+MTyXbsyCimAtQmdsypewdauH9MGSZRW3c7Q==",
+  "dgSpecHash": "s6TUP7GoMHmHo773EpYiYovjY/GEWZyz6Z42ZdF7hj/pgCNrfo1Sp5TafgDVV5UnBPX4C6LKgtN1gFirwcg68Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+  "projectFilePath": "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eddie\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],

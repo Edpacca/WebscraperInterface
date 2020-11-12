@@ -37,9 +37,6 @@ namespace RightmoveScraperInterface
             Console.WriteLine();
 
             currentRequest.GenerateJSONRequestCMD();
-
         }
-
-
     }
 }

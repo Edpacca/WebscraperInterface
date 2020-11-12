@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {}
+    "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {
+    "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+        "projectUniqueName": "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
         "projectName": "RightmoveScraperInterface",
-        "projectPath": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
+        "projectPath": "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\RightmoveScraperInterface.csproj",
         "packagesPath": "C:\\Users\\eddie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eddie\\OneDrive\\Computer Science\\ProjectPorkSword\\RightmoveWescraper\\WebscraperInterface\\WebscraperInterface\\RightmoveScraperInterface\\obj\\",
+        "outputPath": "C:\\Users\\eddie\\OneDrive\\ComputerScience\\ProjectPorkSword\\RightMoveWebscraper\\RightmoveScraperInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\eddie\\AppData\\Roaming\\NuGet\\NuGet.Config",

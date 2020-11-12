@@ -29,7 +29,6 @@ namespace RightmoveScraperInterface
         };
 
         // ADVANCED PARAMETERS
-
         Dictionary<string, Dictionary<string, bool>> SetOfAdvancedSearchParameters = new Dictionary<string, Dictionary<string, bool>>()
         {
             ["property_type"] = new Dictionary<string, bool>()
